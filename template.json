@@ -31,7 +31,8 @@
             "type": "virtualbox-iso",
             "vboxmanage": [
               [ "modifyvm", "{{.Name}}", "--memory", "2048"],
-              [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+              [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
+              [ "modifyvm", "{{.Name}}", "--natpf1", "guestssh,tcp,,7070,,7070" ]
             ],
             "boot_command": [
                 "<esc><esc><enter><wait>",
@@ -43,7 +44,7 @@
                 "initrd=/install/initrd.gz -- <enter>"
             ],
             "headless": true,
-            "boot_wait": "10s",
+            "boot_wait": "15s",
             "disk_size": 20480,
             "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
