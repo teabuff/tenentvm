@@ -14,3 +14,5 @@ apt-get -y install python3-pip
 pip install --upgrade pip
 
 pip install django
+
+apt-get install postgresql postgresql-contrib
