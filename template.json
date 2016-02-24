@@ -29,11 +29,6 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "vboxmanage": [
-              [ "modifyvm", "{{.Name}}", "--memory", "2048"],
-              [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
-              [ "modifyvm", "{{.Name}}", "--natpf1", "guestssh,tcp,,7070,,7070" ]
-            ],
             "boot_command": [
                 "<esc><esc><enter><wait>",
                 "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
@@ -43,8 +38,8 @@
                 "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
             ],
-            "headless": true,
-            "boot_wait": "15s",
+            "headless": false,
+            "boot_wait": "10s",
             "disk_size": 20480,
             "guest_os_type": "Ubuntu_64",
             "http_directory": "http",
@@ -57,7 +52,10 @@
             "ssh_wait_timeout": "10000s",
             "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S bash 'shutdown.sh'",
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-            "virtualbox_version_file": ".vbox_version"
+            "virtualbox_version_file": ".vbox_version",
+            "vboxmanage": [
+              [ "modifyvm", "{{.Name}}", "--natpf1", "guestssh,tcp,,7070,,7070" ]
+            ]
         }
     ],
     "post-processors": [
