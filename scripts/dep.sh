@@ -11,7 +11,7 @@ apt-get -y install python3
 
 apt-get -y install python3-pip
 
-pip install --upgrade pip
+pip3 install --upgrade pip
 
 pip install django
 
