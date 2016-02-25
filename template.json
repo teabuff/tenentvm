@@ -55,7 +55,8 @@
             "virtualbox_version_file": ".vbox_version",
             "vboxmanage": [
               [ "modifyvm", "{{.Name}}", "--natpf1", "guestssh,tcp,,7070,,7070" ]
-            ]
+            ],
+            "vm_name": "tenentvm-{{timestamp}}"
         }
     ],
     "post-processors": [
